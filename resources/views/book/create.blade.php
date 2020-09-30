@@ -10,7 +10,15 @@
 
     <h4 class="my-4">Create a new Book</h4>
 
-    <form action="{{ route('create')}}" method="POST">
+    @if(count($errors) > 0)
+    @foreach($errors->all() as $error)
+    <div class="alert alert-warning" role="alert">
+        {{ $error }}
+    </div>
+    @endforeach
+    @endif
+    
+    <form action="{{ route('create')}}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-row">
             <div class="form-group col-md-6">

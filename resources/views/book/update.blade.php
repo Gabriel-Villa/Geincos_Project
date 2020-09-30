@@ -10,7 +10,7 @@
 
     <h4 class="my-4">Update a Book</h4>
 
-    <form>
+    <form method="post" action="accion.php" enctype="multipart/form-data">
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputName">Name</label>
