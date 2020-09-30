@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('/create', function () {
+    return view('book/index');
+});
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('book/index');
 });
