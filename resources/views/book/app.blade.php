@@ -9,9 +9,7 @@
     @include('book/partials/navigation')
 
     @section('main-content')
-    @show
-
-
+        @show
 
     @include('book/layouts/footer')
 </body>

@@ -1,17 +1,16 @@
 @extends('book/app')
 
 @section('head')
-<title>Create Book</title>
+<title>Update Book</title>
 @endsection
 
 
 @section('main-content')
 <div class="col-md-7 mx-auto my-4 p-2">
 
-    <h4 class="my-4">Create a new Book</h4>
+    <h4 class="my-4">Update a Book</h4>
 
-    <form action="{{ route('create')}}" method="POST">
-        @csrf
+    <form>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputName">Name</label>
