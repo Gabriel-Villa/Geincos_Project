@@ -21,7 +21,7 @@
     </div>
     @endif
 
-    <form action="{{ route('update', $singleBook->id)}}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('update', $singleBook->id)}}" method="POST">
         @method('PUT')
         @csrf
         <div class="form-row">
@@ -45,10 +45,6 @@
                 <input type="number" name="qty" class="form-control" min="0" value="0" maxlength="6" id="inputQty"
                 value="{{ $singleBook->qty }}">
             </div>
-        </div>
-        <div class="custom-file">
-            <input type="file" class="custom-file-input" name="file" id="customFile">
-            <label class="custom-file-label" for="customFile">Choose file</label>
         </div>
         <button type="submit" class="btn btn-danger mt-3 w-25">Update</button>
 

@@ -54,7 +54,7 @@
             </div>
         </div>
         <div class="custom-file">
-            <input type="file" class="custom-file-input" name="file" id="customFile">
+            <input type="file" class="custom-file-input" name="image" id="customFile">
             <label class="custom-file-label" for="customFile">Choose file</label>
         </div>
         <button type="submit" class="btn btn-danger mt-3 w-25">Create</button>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Book;
 
 use App\Http\Controllers\Controller;
 use App\Book;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -42,12 +43,24 @@ class BookController extends Controller
             'author' => 'required',
             'price' => 'required',
             'qty' => 'required',
+            'image' => 'required',
         ]);
+
+        
+        if($archivo = $request->file('image')){
+            $nombre = $archivo->getClientOriginalName();
+            $archivo->move('image', $nombre);
+            
+        }
+
         $book = new Book;
         $book->name = $request->name;
         $book->author = $request->author;
         $book->price = $request->price;
         $book->qty = $request->qty;
+        $book->image = $nombre;
+       
+
         $book->save();
         
         return back()->with('mensaje', 'Book Created');

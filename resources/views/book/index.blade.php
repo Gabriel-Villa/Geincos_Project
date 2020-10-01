@@ -22,7 +22,7 @@
     @endif
 
     <div class="card">
-        <table class="table table-striped table-warning">
+        <table class="table table-striped table-dark text-white">
             <thead>
                 <tr>
                     <th class="text-center" scope="col">#</th>
@@ -44,13 +44,23 @@
                     <td>{{$book->author}}</td>
                     <td>{{$book->price}}</td>
                     <td>{{$book->qty}}</td>
-                    <td>{{$book->image}}</td>
+                    <td><img class="img-fluid" height="50" width="50" src="/image/{{$book->image}}" alt="" srcset=""></td>
                     <td><a class="btn btn-success p-1 pr-4 pl-4" href="{{route('edit', $book)}}">Edit</a></td>
                     <td>
-                        <form class="d-inline" action="{{ route('destroy' , $book) }}" method="post">
+                        <form class="d-inline" id="delete-book" action="{{ route('destroy' , $book) }}" method="post">
                             @method('DELETE')
                             @csrf
-                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                            <button onclick="
+                                if(confirm('Are you sure, You Want to delete this?'))
+                                    {
+                                      event.preventDefault();
+                                      document.getElementById('delete-book').submit();
+                                    }
+                                    else{
+                                      event.preventDefault();
+                                    }" type="submit" class="btn btn-danger btn-sm">
+                                Eliminar
+                            </button>
                         </form>
                     </td>
                 </tr>
