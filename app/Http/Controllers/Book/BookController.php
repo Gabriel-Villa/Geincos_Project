@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Book;
 
 use App\Http\Controllers\Controller;
+use App\Book;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -14,7 +15,8 @@ class BookController extends Controller
      */
     public function index()
     {
-        return view('book.index');
+        $books = Book::paginate(10);
+        return view('book.index', compact('books'));
     }
 
     /**
@@ -41,6 +43,14 @@ class BookController extends Controller
             'price' => 'required',
             'qty' => 'required',
         ]);
+        $book = new Book;
+        $book->name = $request->name;
+        $book->author = $request->author;
+        $book->price = $request->price;
+        $book->qty = $request->qty;
+        $book->save();
+        
+        return back()->with('mensaje', 'Book Created');
     }
 
     /**
@@ -51,7 +61,8 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        //
+        $singleBook = Book::findOrFail($id);
+        return view('book.edit', compact('singleBook'));
     }
 
     /**
@@ -74,7 +85,13 @@ class BookController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $bookUpdate = Book::findOrFail($id);
+        $bookUpdate->name = $request->name;
+        $bookUpdate->author = $request->author;
+        $bookUpdate->price = $request->price;
+        $bookUpdate->qty = $request->qty;
+        $bookUpdate->save();
+        return back()->with('mensaje', 'Updated book');
     }
 
     /**
@@ -85,6 +102,8 @@ class BookController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deleteBook = Book::findOrFail($id);
+        $deleteBook->delete();
+        return back()->with('mensaje', 'The book has been successfully selected');
     }
 }
