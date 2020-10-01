@@ -12,7 +12,7 @@
 
     <!-- Success message -->
     @if(session('mensaje'))
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <div class="alert alert-warning alert-dismissible fade show" id="session-message" role="alert">
         <strong>{{session('mensaje')}}</strong>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -62,4 +62,13 @@
     </form>
 
 </div>
+@endsection
+
+@section('footer')
+    <script>
+            const d = document;
+            d.addEventListener("DOMContentLoaded", (event) => {
+                setTimeout(() => d.querySelector('#session-message').remove(), 3000);
+            });     
+    </script>
 @endsection
